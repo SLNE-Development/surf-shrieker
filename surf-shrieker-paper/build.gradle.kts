@@ -10,9 +10,12 @@ surfPaperPluginApi {
     foliaSupported(true)
 
     withSurfRedis()
-    withCorePaper()
 
     authors.add("red")
+
+    bootstrapDependencies {
+        registerRequired("surf-rabbitmq-paper")
+    }
 
     serverDependencies {
         registerRequired("LuckPerms")
