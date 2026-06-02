@@ -7,6 +7,7 @@ plugins {
 
 dependencies {
     api(projects.surfShriekerCore.surfShriekerCoreCommon)
+    implementation("dev.slne.surf.core:surf-core-api-common:+")
 }
 
 surfStandaloneApi {

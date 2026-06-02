@@ -1,30 +1,46 @@
 package dev.slne.surf.shrieker.api.type
 
-enum class ReportDetails(val displayName: String, val description: String) {
+enum class ReportDetails(
+    val displayName: String,
+    val description: String,
+    val widgetType: WidgetType
+) {
     TROLLING_DESCRIPTION(
         "Beschreibung des Vorfalls",
-        "Beschreibe den Vorfall so genau wie möglich. Je mehr Details du angibst, desto besser können wir den Fall untersuchen."
+        "Beschreibe den Vorfall so genau wie möglich. Je mehr Details du angibst, desto besser können wir den Fall untersuchen.",
+        WidgetType.LARGE
     ),
     GRIEF_LOCATION(
         "Ort des Vorfalls",
-        "Bitte gebe hier genaue Koordinaten sowie einen optionalen Radius an. Je genauer die Angaben sind, desto besser können wir den Fall untersuchen."
+        "Bitte gebe hier genaue Koordinaten sowie einen optionalen Radius an. Je genauer die Angaben sind, desto besser können wir den Fall untersuchen.",
+        WidgetType.ONE_LINER
     ),
     GRIEF_ALLOWED(
         "Wer ist in deinem Team?",
-        "Gebe hier an, welche Personen in deinem Team sind, damit wir besser einschätzen können, ob es sich um Griefing handelt oder nicht."
+        "Gebe hier an, welche Personen in deinem Team sind, damit wir besser einschätzen können, ob es sich um Griefing handelt oder nicht.",
+        WidgetType.SMALL
     ),
     GRIEF_DESCRIPTION(
         "Beschreibung des Vorfalls",
-        "Beschreibe den Vorfall so genau wie möglich. Je mehr Details du angibst, desto besser können wir den Fall untersuchen."
+        "Beschreibe den Vorfall so genau wie möglich. Je mehr Details du angibst, desto besser können wir den Fall untersuchen.",
+        WidgetType.LARGE
     ),
     EXPLOITING_DESCRIPTION(
         "Beschreibung des Vorfalls",
-        "Beschreibe den Vorfall so genau wie möglich. Je mehr Details du angibst, desto besser können wir den Fall untersuchen."
+        "Beschreibe den Vorfall so genau wie möglich. Je mehr Details du angibst, desto besser können wir den Fall untersuchen.",
+        WidgetType.LARGE
     ),
     VOICE_DESCRIPTION(
         "Beschreibung des Vorfalls",
-        "Beschreibe den Vorfall so genau wie möglich. Je mehr Details du angibst, desto besser können wir den Fall untersuchen."
+        "Beschreibe den Vorfall so genau wie möglich. Je mehr Details du angibst, desto besser können wir den Fall untersuchen.",
+        WidgetType.LARGE
     );
+
+    enum class WidgetType {
+        LARGE,
+        SMALL,
+        ONE_LINER
+    }
 
     companion object {
         fun byDataType(reportType: ReportType) = when (reportType) {

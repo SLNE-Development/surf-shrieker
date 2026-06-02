@@ -8,4 +8,6 @@ object PermissionList : PermissionRegistry() {
 
     val REPORT_COMMAND = create("$BASE_COMMAND.report")
     val REPORT_NOTIFY = create("$BASE.notify")
+
+    val SHRIEKER_COMMAND = create("$BASE_COMMAND.shrieker")
 }

@@ -14,7 +14,6 @@ class ClientLoader(
 
     suspend fun onLoad() {
         rabbitApi.freezeAndConnect()
-
     }
 
     suspend fun onEnable() = withContext(Dispatchers.IO) {

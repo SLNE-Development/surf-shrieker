@@ -9,6 +9,7 @@ import dev.slne.surf.api.paper.dialog.base
 import dev.slne.surf.api.paper.dialog.dialog
 import dev.slne.surf.api.paper.dialog.type
 import dev.slne.surf.shrieker.api.type.ReportType
+import dev.slne.surf.shrieker.paper.plugin
 import net.kyori.adventure.text.format.TextDecoration
 import java.util.*
 
@@ -34,6 +35,10 @@ fun reportTypeDialog(playerName: String, playerUuid: UUID) = dialog {
     type {
         multiAction {
             ReportType.entries.forEach {
+                if (it == ReportType.VOICE && !plugin.hasVoiceChatSupport()) {
+                    return@forEach
+                }
+
                 action {
                     label {
                         append(it)

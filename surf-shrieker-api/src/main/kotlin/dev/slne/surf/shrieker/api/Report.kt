@@ -1,14 +1,14 @@
 package dev.slne.surf.shrieker.api
 
+import dev.slne.surf.api.core.serializer.adventure.key.SerializableKey
 import dev.slne.surf.api.core.serializer.java.datetime.datetime.offset.SerializableOffsetDateTime
 import dev.slne.surf.api.core.serializer.java.uuid.SerializableUUID
 import dev.slne.surf.core.api.common.SurfCoreApi
 import dev.slne.surf.core.api.common.player.SurfPlayer
 import dev.slne.surf.shrieker.api.type.ReportType
 import kotlinx.serialization.Serializable
-import net.kyori.adventure.key.Key
 
-typealias ReportData = MutableMap<Key, String>
+typealias ReportData = MutableMap<SerializableKey, String>
 
 @Serializable
 data class Report(

@@ -3,6 +3,7 @@ package dev.slne.surf.shrieker.paper.listener
 import dev.slne.surf.api.core.messages.adventure.sendText
 import dev.slne.surf.redis.event.OnRedisEvent
 import dev.slne.surf.shrieker.api.packet.ReportCreatedRedisEvent
+import dev.slne.surf.shrieker.api.packet.ReportResolvedRedisEvent
 import dev.slne.surf.shrieker.paper.permission.PermissionList
 import dev.slne.surf.shrieker.paper.util.appendShriekerPrefix
 import kotlinx.coroutines.Dispatchers
@@ -22,7 +23,7 @@ object ShriekerRedisListener {
                     variableValue(report.reportedUser().username)
                     info(" wurde von ")
                     variableValue(report.reporterUser().username)
-                    info("für ")
+                    info(" für ")
                     variableValue(report.type.displayName)
                     info(" gemeldet.")
                 }
@@ -30,7 +31,7 @@ object ShriekerRedisListener {
     }
 
     @OnRedisEvent
-    suspend fun onReportResolved(event: ReportCreatedRedisEvent) = withContext(Dispatchers.IO) {
+    suspend fun onReportResolved(event: ReportResolvedRedisEvent) = withContext(Dispatchers.IO) {
         val report = event.report
         val player = Bukkit.getPlayer(report.reporter) ?: return@withContext
 

@@ -45,8 +45,6 @@ fun reportDetailsDialog(
             input {
                 ReportDetails.byDataType(reportType).forEach {
                     text(it.name) {
-                        width(400)
-                        multiline(15)
                         maxLength(2000)
                         label {
                             info(it.displayName)
@@ -55,9 +53,25 @@ fun reportDetailsDialog(
                             })
                         }
 
+                        when (it.widgetType) {
+                            ReportDetails.WidgetType.LARGE -> {
+                                width(400)
+                                multiline(15)
+                            }
+
+                            ReportDetails.WidgetType.SMALL -> {
+                                multiline(5)
+                                width(250)
+                            }
+
+                            ReportDetails.WidgetType.ONE_LINER -> {
+                                multiline(1)
+                                width(350)
+                            }
+                        }
+
                         if (it == ReportDetails.GRIEF_LOCATION) {
                             initial(reporter.location.dialogString())
-                            multiline(1)
                         }
                     }
                 }
