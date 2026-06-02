@@ -6,6 +6,9 @@ import dev.slne.surf.database.libs.org.jetbrains.exposed.v1.r2dbc.SchemaUtils
 import dev.slne.surf.database.libs.org.jetbrains.exposed.v1.r2dbc.transactions.suspendTransaction
 import dev.slne.surf.microservice.api.microservice.Microservice
 import dev.slne.surf.rabbitmq.api.ServerRabbitMQApi
+import dev.slne.surf.shrieker.core.common.service.ReportBanService
+import dev.slne.surf.shrieker.core.common.service.ReportService
+import dev.slne.surf.shrieker.core.common.service.VoiceLogService
 import dev.slne.surf.shrieker.microservice.service.ServerReportBanService
 import dev.slne.surf.shrieker.microservice.service.ServerReportService
 import dev.slne.surf.shrieker.microservice.service.ServerVoiceLogService
@@ -31,9 +34,9 @@ class ShriekerMicroservice : Microservice() {
             )
         }
 
-        rabbitApi.registerRpcService<ServerReportService>(ServerReportService)
-        rabbitApi.registerRpcService<ServerReportBanService>(ServerReportBanService)
-        rabbitApi.registerRpcService<ServerVoiceLogService>(ServerVoiceLogService)
+        rabbitApi.registerRpcService<ReportService>(ServerReportService)
+        rabbitApi.registerRpcService<ReportBanService>(ServerReportBanService)
+        rabbitApi.registerRpcService<VoiceLogService>(ServerVoiceLogService)
 
         rabbitApi.freezeAndConnect()
     }
