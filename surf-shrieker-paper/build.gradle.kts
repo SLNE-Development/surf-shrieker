@@ -10,19 +10,17 @@ surfPaperPluginApi {
     foliaSupported(true)
 
     withSurfRedis()
+    withCorePaper()
 
     authors.add("red")
-
-    bootstrapDependencies {
-        registerRequired("surf-rabbitmq-paper")
-    }
-
     serverDependencies {
         registerRequired("LuckPerms")
         registerRequired("surf-rabbitmq-paper")
+        registerRequired("surf-chat-paper")
     }
 }
 
 dependencies {
     api(projects.surfShriekerCore.surfShriekerCorePaper)
+    compileOnly("dev.slne.surf.chat:surf-chat-api:+")
 }

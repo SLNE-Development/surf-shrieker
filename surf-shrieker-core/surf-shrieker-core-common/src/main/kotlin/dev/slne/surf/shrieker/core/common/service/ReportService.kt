@@ -18,6 +18,8 @@ interface ReportService {
         reportedAt: SerializableOffsetDateTime
     ): Report
 
-    suspend fun findReportsByReporter(reporter: UUID)
-    suspend fun findReportsByReported(reported: UUID)
+    suspend fun addData(reportId: Long, data: ReportData)
+
+    suspend fun findReportsByReporter(reporter: UUID): List<Report>
+    suspend fun findReportsByReported(reported: UUID): List<Report>
 }

@@ -6,14 +6,17 @@ import dev.slne.surf.database.libs.org.jetbrains.exposed.v1.core.dao.id.LongIdTa
 import dev.slne.surf.shrieker.api.type.ReportType
 
 object ReportsTable : LongIdTable("shrieker_reports") {
-    val reporter = nativeUuid("reporter")
-    val reported = nativeUuid("reported")
+    val reporter = nativeUuid("reporter").index()
+    val reported = nativeUuid("reported").index()
     val reportedAt = offsetDateTime("reported_at")
 
-    val type = enumeration<ReportType>("type")
+    val type = enumeration<ReportType>("type").index()
 
     val resolved = bool("resolved").default(false)
     val resolvedResult = bool("resolved_result").nullable()
     val resolvedBy = nativeUuid("resolved_by").nullable()
     val resolvedAt = offsetDateTime("resolved_at").nullable()
+
+    val resolvedText = largeText("resolved_text").nullable()
+    val resolvedNotified = bool("resolved_notified").default(false).index()
 }

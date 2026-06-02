@@ -11,4 +11,6 @@ interface ReportBanService {
         bannedBy: SerializableUUID?,
         bannedAt: SerializableOffsetDateTime,
     )
+
+    suspend fun isBanned(player: SerializableUUID): Boolean
 }

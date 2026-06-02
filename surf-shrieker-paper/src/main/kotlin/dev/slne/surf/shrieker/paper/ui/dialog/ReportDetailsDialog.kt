@@ -2,16 +2,18 @@
 
 package dev.slne.surf.shrieker.paper.ui.dialog
 
+import com.github.shynixn.mccoroutine.folia.launch
 import dev.slne.surf.api.core.font.toSmallCaps
 import dev.slne.surf.api.core.messages.adventure.appendNewline
 import dev.slne.surf.api.core.messages.adventure.buildText
 import dev.slne.surf.api.core.messages.adventure.key
-import dev.slne.surf.api.core.messages.adventure.sendText
 import dev.slne.surf.api.paper.dialog.base
 import dev.slne.surf.api.paper.dialog.dialog
 import dev.slne.surf.api.paper.dialog.type
 import dev.slne.surf.shrieker.api.type.ReportDetails
 import dev.slne.surf.shrieker.api.type.ReportType
+import dev.slne.surf.shrieker.paper.plugin
+import dev.slne.surf.shrieker.paper.service.ReportStatusService
 import dev.slne.surf.shrieker.paper.util.dialogString
 import io.papermc.paper.dialog.Dialog
 import net.kyori.adventure.text.format.TextDecoration
@@ -93,12 +95,18 @@ fun reportDetailsDialog(
                                     response.getText(reportDetail.name)
                                 }.mapKeys { key(it.key.name.lowercase()) }
 
-                            player.sendText {
-                                appendInfoPrefix()
-                                info("Vielen Dank für deinen $reportType Report! Wir werden uns den Fall so schnell wie möglich anschauen.")
-                            }
-
                             player.closeDialog()
+
+                            plugin.launch {
+                                ReportStatusService.handleReport(
+                                    player,
+                                    reportedUuid,
+                                    reportedName,
+                                    reportType,
+                                    details.filterValues { it != null }.mapValues { it.value!! }
+                                        .toMutableMap()
+                                )
+                            }
                         }
                     }
                 }

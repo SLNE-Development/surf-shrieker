@@ -4,6 +4,11 @@ plugins {
     id("dev.slne.surf.api.gradle.core")
 }
 
+surfCoreApi {
+    withSurfRedis()
+    withCoreCommon()
+}
+
 publishing {
     repositories {
         slneReleases()

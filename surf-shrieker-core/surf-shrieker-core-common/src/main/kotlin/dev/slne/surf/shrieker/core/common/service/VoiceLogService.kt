@@ -4,5 +4,5 @@ import dev.slne.surf.rabbitmq.api.rpc.RpcService
 
 @RpcService
 interface VoiceLogService {
-    suspend fun logVoiceChat(reportId: Long, voiceData: ByteArray)
+    suspend fun logVoice(reportId: Long, voiceData: ByteArray): Long
 }
