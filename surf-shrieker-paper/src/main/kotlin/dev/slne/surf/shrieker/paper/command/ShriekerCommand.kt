@@ -9,6 +9,7 @@ import dev.slne.surf.api.paper.command.executors.playerExecutorSuspend
 import dev.slne.surf.shrieker.core.paper.service.ReportServices
 import dev.slne.surf.shrieker.paper.permission.PermissionList
 import dev.slne.surf.shrieker.paper.util.appendShriekerPrefix
+import dev.slne.surf.shrieker.paper.voice.media.AudioMediaPlayer
 
 fun shriekerCommand() = commandTree("shrieker") {
     withPermission(PermissionList.SHRIEKER_COMMAND)
@@ -26,7 +27,12 @@ fun shriekerCommand() = commandTree("shrieker") {
                     return@playerExecutorSuspend
                 }
 
+                AudioMediaPlayer.playFromBytes(player, voiceBytes)
 
+                player.sendText {
+                    appendShriekerPrefix()
+                    info("Der Voice Log $voiceId wird abgespielt.")
+                }
             }
         }
     }

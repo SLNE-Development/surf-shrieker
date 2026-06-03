@@ -7,6 +7,7 @@ import dev.slne.surf.api.paper.extensions.pluginManager
 import dev.slne.surf.shrieker.core.paper.ClientShriekerInstance
 import dev.slne.surf.shrieker.core.paper.redisApi
 import dev.slne.surf.shrieker.paper.command.reportCommand
+import dev.slne.surf.shrieker.paper.command.shriekerCommand
 import dev.slne.surf.shrieker.paper.listener.ShriekerRedisListener
 import dev.slne.surf.shrieker.paper.listener.VoiceChatListener
 import dev.slne.surf.shrieker.paper.voice.VoicePlugin
@@ -20,6 +21,7 @@ class PaperMain : SuspendingJavaPlugin() {
         redisApi.subscribeToEvents(ShriekerRedisListener)
 
         reportCommand()
+        shriekerCommand()
     }
 
     override suspend fun onEnableAsync() {
