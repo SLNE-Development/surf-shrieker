@@ -27,9 +27,11 @@ class PaperMain : SuspendingJavaPlugin() {
     override suspend fun onEnableAsync() {
         ClientShriekerInstance.clientLoader.onEnable()
 
-        VoiceChatListener.register()
-
-        server.servicesManager.load(BukkitVoicechatService::class.java)?.registerPlugin(VoicePlugin)
+        if (hasVoiceChatSupport()) {
+            VoiceChatListener.register()
+            server.servicesManager.load(BukkitVoicechatService::class.java)
+                ?.registerPlugin(VoicePlugin)
+        }
     }
 
     override suspend fun onDisableAsync() {
